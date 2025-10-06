@@ -285,7 +285,7 @@ def update_lidarr_db(artistName, albumName, title, trackNumber, year):
 
     path = music_path + "/" + artistName + "/" + albumName
     track_num_padded = str(trackNumber).zfill(2)
-    filePath = f"{path}/{artistName} - {albumName} - {track_num_padded} - {title}.mp3""
+    filePath = f"{path}/{artistName} - {albumName} - {track_num_padded} - {title}.mp3"
 
     con = sqlite3.connect(lidar_db)
     cur = con.cursor()
