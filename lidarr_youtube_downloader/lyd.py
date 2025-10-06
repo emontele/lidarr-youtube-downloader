@@ -142,8 +142,8 @@ def update_mp3tag(
     artistName, albumName, title, trackNumber, trackTotal, year, disc, discTotal, genre
 ):
     path = music_path + "/" + artistName + "/" + albumName
-    filePath = path + "/" + artistName + " - "
-    filePath += albumName + " - " + title + ".mp3"
+    track_num_padded = str(trackNumber).zfill(2)
+    filePath = f"{path}/{artistName} - {albumName} - {track_num_padded} - {title}.mp3"
 
     file_exists = exists(filePath)
 
@@ -284,8 +284,8 @@ def update_lidarr_db(artistName, albumName, title, trackNumber, year):
     global lidar_db, music_path
 
     path = music_path + "/" + artistName + "/" + albumName
-    filePath = path + "/" + artistName + " - " + albumName
-    filePath += " - " + title + ".mp3"
+    track_num_padded = str(trackNumber).zfill(2)
+    filePath = f"{path}/{artistName} - {albumName} - {track_num_padded} - {title}.mp3""
 
     con = sqlite3.connect(lidar_db)
     cur = con.cursor()
@@ -352,8 +352,9 @@ def get_song(
     bestTitle = ""
     searchFor = artistName + " - " + title
     path = music_path + "/" + artistName + "/" + albumName
-    filePath = path + "/" + artistName + " - " + albumName
-    filePath += " - " + title + ".mp3"
+    track_num_padded = str(trackNumber).zfill(2)
+    filePath = f"{path}/{artistName} - {albumName} - {track_num_padded} - {title}.mp3"
+
     os.makedirs(path, exist_ok=True)
 
     if os.path.exists(filePath):
